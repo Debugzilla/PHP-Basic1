@@ -129,33 +129,35 @@ echo "El producto total de las variables (30 * 10 * 12.99 * 3.14) = " .$Producte
 //Crea una funció Calculadora que entri dos nombres per paràmetre, i en un tercer paràmetre et permeti fer la suma, la resta, la multiplicació o la divisió dels dos nombres.
 
 echo "<u>Exercici 3b</u>" ."<br/>";
-function Calcular(int $param1, int $param2, string $opt) {
+function Calcular(int $param1, int $param2, string $opt) { 
 
     echo "Bienvenidos a la calculadora virtual"  ."<br/>";
+    $msg_info = "Habéis seleccionado la opcion de : ";
+    $msg_print = "El resultado de " .  $opt . " = ";
 
     switch ($opt) {
         case "sumar":
-            echo "Habéis seleccionado la opción de sumar." ."<br/>";
+            echo $msg_info . $opt. "<br/>";
             $Sumar = $param1 + $param2;  
-            echo  "El resultado de la suma es : " .$Sumar;
+            echo  $msg_print . $Sumar;
             break;
         
         case "restar":
-            echo "Habéis seleccionado la opción de restar" . "<br/>";
+            echo $msg_info . $opt. "<br/>";
             $Restar = $param1 - $param2;
-            echo "El resultado de la resta es : ". $Restar;
+            echo  $msg_print. $Restar;
             break;
 
         case "multiplicar":
-            echo "Habéis seleccionado la opción de multiplicar" . "<br/>";
+            echo "$msg_info" .$opt . "<br/>";
             $Multiplicar = $param1 * $param2;
-            echo "El resultado de la multiplicación es : ". $Multiplicar;
+            echo $msg_print. $Multiplicar;
             break;
 
         case "dividir":
-            echo "Habéis seleccionado la opción de dividir" . "<br/>";
+            echo $msg_info. $opt . "<br/>";
             $Dividir = $param1 / $param2;
-            echo "El resultado de la división es : ". $Dividir . "<br/>";
+            echo $msg_print. $Dividir . "<br/>";
             break;
 
     }
@@ -163,7 +165,9 @@ function Calcular(int $param1, int $param2, string $opt) {
  
 }
 
-Calcular(20, 15, "dividir");
+Calcular(20, 15, "multiplicar");
+
+
 
 
 
@@ -177,6 +181,8 @@ echo "<u>Exercici 4</u>" ."<br/>";
 echo "Contador de numeros" . "<br/>";
 function contar($num = 10, $increment = 1) {
 
+    $msg_count = "Esta contando de" .$increment . " en " . $increment;
+
    
     for ($i = 0; $i <= $num; $i += $increment) {
         echo $i . "<br/>";
@@ -185,24 +191,24 @@ function contar($num = 10, $increment = 1) {
 
     switch ($increment) {
         case 1:
-            echo "Esta contando de " . $increment . " en " .$increment;
+            echo $msg_count;
             break;
         
         case 2:
-            echo "Esta contando de ". $increment. " en " .$increment;
+            echo $msg_count;
             break;
         
         case 3:
-            echo "Esta contando de ". $increment." en ".$increment;
+            echo $msg_count;
             break;
             
         
         case 4:
-            echo "Esta contando de ". $increment." en ".$increment;
+            echo $msg_count;
             break;
         
         case 5:
-            echo "Esta contando de ". $increment." en ".$increment;
+            echo $msg_count;
             break;
 
     }
@@ -228,16 +234,18 @@ echo "<br/>";
 
 echo "<br/><br/>";
 
-echo "<u>Exercici 5</u>" ."<br/><br/>";
-function avaluar($nota) {
+echo "<u>Exercici 5</u>" ."<br/><br/>";function avaluar($nota) {
+    $type = ["Es de primera división", "Es de segunda división", "Es de tercera división", "Está suspendido"];
+
+
     if ($nota >= 60 ) {
-        echo "Es de primera división" . "<br/>";
+        echo $type[0] . "<br/>";
     } else if ($nota >= 45) {
-        echo "Es de segunda división" ."<br/>";
+        echo  $type[1]."<br/>";
     } else if ($nota >=33) {
-        echo "Es de tercera división" ."<br/>";
+        echo  $type[2] ."<br/>";
     } else  {
-        echo "Esta suspendido" . "<br/>";
+        echo $type[3] . "<br/>";
     }
 
     
@@ -245,30 +253,36 @@ function avaluar($nota) {
 }
 
 
-avaluar(44) . "<br/>";
-avaluar(32) . "<br/>";
+avaluar(60) . "<br/>";
+avaluar(42) . "<br/>";
 avaluar(12) . "<br/>";
-avaluar(45) . "<br/>";
-
 
 //Charlie em va mossegar el dit Charlie et mossegara el dit exactament el 50% del temps
 // escriu una funció isBitten() que retorna TRUE amb un 50% de probabilitat i FALSE en cas contrari
 echo "<u>Exercici 6</u>" ."<br/>";
 echo "Devolver TRUE o FALSE con un 50% de probabilidad" ."<br/>";
+
 function isBitten() {
-    return rand(0,1);
+    // Genera un número aleatorio entre 0 y 1
+    $numAleatori = rand(0, 1);
 
-}
-
-
-if(isBitten()){
-    echo " Resultado = true";
-} else {
-    echo "Resultado = false";
+    switch ($numAleatori) {
+        case 0:
+            echo "false";
+            return false;
+            
+            
+        case 1:
+            echo "true";
+            return true;
+            
+    }
 }
 
 
 isBitten();
+
+
 
 echo "<br/><br/><br/>";
 
@@ -279,24 +293,26 @@ echo "<br/><br/><br/>";
 
 
 
-function PrecioLLamada($minuts) {
+function PrecioLLamar(int $minuts) {
     $costBase = 0.10; 
     $costMinAdicional = 0.05; 
     $total = $costBase; 
+    $msg_cost = "La llamada tiene un coste de: ";
 
 
     if ($minuts > 3) {
         
         $minAd = $minuts - 3;
+        echo $minAd;
    
         $total += $minAd * $costMinAdicional;
     }
 
-    echo "La llamada tiene un coste de: " . number_format($total, 2);
+    echo $msg_cost.  number_format($total, 2);
 }
 
 // Ejemplo de uso
-PrecioLLamada(10);
+PrecioLLamar(10);
 
 echo "<br/><br/>";
 
@@ -312,28 +328,39 @@ echo "<br/><br/>";
 //Si comprem 2 xoco, 1 xicle i 1 caramel, que afegeixi el subtotal al total
 
 
-function botiga($xoco, $xicle, $caramel){
-
-    $PreuXoco = 1;
-    $PreuXicle = 0.5;
-    $PreuCaramel = 1.5;
+function comprar(int $xoco, int $xicle, int $caramel){
     
+    $preus = [1, 0.5, 1.5];
 
-    $subtotalXoco = $xoco * $PreuXoco;
-    $subtotalXicle = $xicle * $PreuXicle;
-    $subtotalCaramel = $caramel * $PreuCaramel;
+
+    
+    $subtotalXoco = $xoco * $preus[0] ;
+    $subtotalXicle = $xicle * $preus[1];
+    $subtotalCaramel = $caramel * $preus[2];
+    $subtotals = [$subtotalXoco, $subtotalXicle, $subtotalCaramel];
+    $numUnitariXoco = $preus[0];
+    $numUnitxicle = $preus[1];
+    $numUnitcaramel = $preus[2];
+    $numsUnits = [$numUnitariXoco, $numUnitxicle, $numUnitcaramel];
 
     $total = $subtotalXoco + $subtotalXicle + $subtotalCaramel;
+    $productos = [" Xoco " , " Xicle ", " Caramel "];
+    $subtotalmsg = "Subtotal de : ";
+    $msgPreuUnit = "Precio unitario ";
+    $totalMsg = "Total a pagar: ";
 
-    echo "Subtotal de xocolata: " . $subtotalXoco . " <br/>";
-    echo "Subtotal de xiclet: " . $subtotalXicle . " <br/>";
-    echo "Subtotal de caramel: " . $subtotalCaramel . " <br/>";
-    echo "Total a pagar: " . $total . " <br/>";
+    echo $subtotalmsg. $productos[0]." = ". $subtotals[0] ."  " .$msgPreuUnit." = ".$numsUnits[0] . " <br/>";
+    echo $subtotalmsg. $productos[1]." = ". $subtotals[1] ."  ".$msgPreuUnit."  = ".$numsUnits[1] . " <br/>";
+    echo $subtotalmsg .$productos[2]." = ". $subtotals[2] ."  ".$msgPreuUnit."  =  ". $numsUnits[2] . " <br/>";
+    echo $totalMsg. $total . " <br/>";
 
 
 }
 
-botiga(2,1,1);
+comprar(2,1,1);
+
+
+
 
 
 
